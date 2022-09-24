@@ -94,7 +94,6 @@ export default class App extends React.Component {
         {pictureData.length > 0 && (
           <ImageGallery
             pictureData={pictureData}
-            // 2-МОДАЛКА) кинули метод закрытия в пропс в модалку-пик
             onClick={this.pictureModalClick}
           ></ImageGallery>
         )}
@@ -102,6 +101,7 @@ export default class App extends React.Component {
         {pictureData.length > 0 && <LoadMore onClick={this.loadMore} />}
         {pictureModal.length > 0 && (
           <Modal onClose={this.closeModal}>
+            {/* 2-МОДАЛКА) кинули метод закрытия в пропс в модалку-пик */}
             <img src={pictureModal} alt="" />
           </Modal>
         )}
