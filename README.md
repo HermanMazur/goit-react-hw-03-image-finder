@@ -104,6 +104,8 @@
 ## ICoNSVGButton
 
 1. Для icons в APP - import {ReactComponent as (название иконки)} from './
-   (scr)'.
+   (scr)',
 2. В render() можно задавать размеры инлайн. Иконку поставить в кнопку иконку
-   {children}- svg
+   {children}- svg,
+3. На IconButton в АРР добавить props aria-label=" text" ОБЯЗАТЕЛЬНО, а в
+   компоненте кнопки ...allyProps
