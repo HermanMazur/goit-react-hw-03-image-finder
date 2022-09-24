@@ -25,6 +25,7 @@ export default class Modal extends Component {
     }
   };
 
+  // 3-МОДАЛКА) при event  вызвали метод через пропс 
   handleBackdropClick = event => {
     if (event.currentTarget === event.target) {
       this.props.onClose();

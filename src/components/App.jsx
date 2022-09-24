@@ -67,6 +67,7 @@ export default class App extends React.Component {
     });
   };
 
+  // 1-МОДАЛКА)метод для закрытия модалки-пик 
   closeModal = () => {
     this.setState({
       pictureModal: '',
@@ -93,6 +94,7 @@ export default class App extends React.Component {
         {pictureData.length > 0 && (
           <ImageGallery
             pictureData={pictureData}
+            // 2-МОДАЛКА) кинули метод закрытия в пропс в модалку-пик
             onClick={this.pictureModalClick}
           ></ImageGallery>
         )}
