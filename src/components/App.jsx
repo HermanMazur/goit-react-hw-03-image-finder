@@ -50,11 +50,12 @@ export default class App extends React.Component {
   };
 
   handleFormSubmit = pictureName => {
-    this.resetPage();
-
+    // перезапись на новые 12 картинок при вводе новой строки валидной 
+    this.resetPage(); 
     this.setState({ pictureName });
   };
 
+  // функция загрузки новых 12 картинок 
   loadMore = () => {
     this.setState(prevState => ({
       page: prevState.page + 1,
@@ -74,12 +75,14 @@ export default class App extends React.Component {
     });
   };
 
+  // скидываем страницу на 1 при новой валидной строки   
   resetPage() {
     this.setState({
       page: 1,
     });
   }
 
+   // скидываем инпут поиска на 0
   resetData() {
     this.setState({
       pictureData: '',

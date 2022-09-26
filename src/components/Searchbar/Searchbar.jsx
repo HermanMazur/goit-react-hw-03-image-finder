@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import toast, { Toaster } from 'react-hot-toast';
-import { SearchbarHeader, SearchForm,SearchFormButton, SearchFormButtonLabel, SearchFormInput } from "./Searchbar.styled";
+import { SearchbarHeader, SearchForm, SearchFormButton, SearchFormButtonLabel, SearchFormInput } from "./Searchbar.styled";
 
 export default class SearchBar extends React.Component {
 
@@ -31,6 +31,7 @@ export default class SearchBar extends React.Component {
           <SearchFormButton type="submit">
             <SearchFormButtonLabel>Search</SearchFormButtonLabel>
           </SearchFormButton>
+          
           <SearchFormInput
             value={this.state.pictureName}
             onChange={this.handleSearchChange}

@@ -7,6 +7,7 @@ const ImageGalleryItem = ({ id, largeImageURL, webformatURL, onClick }) => {
       key={id}
       onClick={() => onClick(largeImageURL)}
     >
+      
       <Image
         src={webformatURL}
         alt=""

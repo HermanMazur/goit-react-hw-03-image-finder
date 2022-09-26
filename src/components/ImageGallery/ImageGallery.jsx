@@ -7,7 +7,8 @@ const ImageGallery = ({ pictureData, onClick }) => (
     key={id}
     largeImageURL={largeImageURL}
     webformatURL={webformatURL}
-    onClick={onClick} />))}</List>
+    onClick={onClick} />))}
+  </List>
 );
 
 export default ImageGallery;
