@@ -130,7 +130,7 @@ export default class App extends React.Component {
           ></ImageGallery>
         )}
         {status === 'pending' && <LoaderSpiner />}
-        {IsLoadingMore > 0 && <LoadMore onClick={this.loadMore} />}
+        {IsLoadingMore && <LoadMore onClick={this.loadMore} />}
         {pictureModal.length > 0 && (
           <Modal onClose={this.closeModal}>
             {/* 2-МОДАЛКА) кинули метод закрытия в пропс в модалку-пик */}
