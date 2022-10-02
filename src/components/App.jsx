@@ -15,7 +15,7 @@ export default class App extends React.Component {
     pictureModal: '',
     status: 'idle',
     page: 1,
-    loadMore: false,
+    IsLoadingMore: false,
   };
 
   componentDidUpdate(prevState, prevProps) {
@@ -37,6 +37,23 @@ export default class App extends React.Component {
     }
   }
 
+  // loadPicture = () => {
+  //   const { pictureName, page } = this.state;
+  //   this.setState({ status: 'pending' });
+  //   api
+  //     .fetchPicture(pictureName, page)
+  //     .then(res => {
+  //       this.setState(prevState => ({
+  //         pictureData: [...prevState.pictureData, ...mapper(res.data.hits)],
+  //         status: 'resolved',
+  //       }));
+  //       if (res.data.hits.length === 0 ) {
+  //         toast.error('There is no picture for that name');
+  //       }
+  //     })
+  //     .catch(error => console.log(error));
+  // };
+
   loadPicture = () => {
     const { pictureName, page } = this.state;
     this.setState({ status: 'pending' });
@@ -46,8 +63,13 @@ export default class App extends React.Component {
         this.setState(prevState => ({
           pictureData: [...prevState.pictureData, ...mapper(res.data.hits)],
           status: 'resolved',
+          IsLoadingMore:
+            prevState.pictureData.length + res.data.hits.length ===
+            res.data.totalHits
+              ? false
+              : true,
         }));
-        if (res.data.hits.length === 0 ) {
+        if (res.data.hits.length === 0) {
           toast.error('There is no picture for that name');
         }
       })
@@ -92,11 +114,12 @@ export default class App extends React.Component {
   resetData() {
     this.setState({
       pictureData: '',
+      IsLoadingMore: false,
     });
   }
 
   render() {
-    const { status, pictureData, pictureModal } = this.state;
+    const { status, pictureData, pictureModal, IsLoadingMore } = this.state;
     return (
       <div>
         <Searchbar onSubmit={this.handleFormSubmit} />        
@@ -107,7 +130,7 @@ export default class App extends React.Component {
           ></ImageGallery>
         )}
         {status === 'pending' && <LoaderSpiner />}
-        {pictureData.length > 0 && <LoadMore onClick={this.loadMore} />}
+        {IsLoadingMore > 0 && <LoadMore onClick={this.loadMore} />}
         {pictureModal.length > 0 && (
           <Modal onClose={this.closeModal}>
             {/* 2-МОДАЛКА) кинули метод закрытия в пропс в модалку-пик */}
