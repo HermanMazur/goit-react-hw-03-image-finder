@@ -24,10 +24,6 @@ export default class App extends React.Component {
     const prevPage = prevProps.page;
     const nextPage = this.state.page;
 
-// if (prevPage === nextPage && prevSearch === nextSearch) {
-//       return;
-//     }
-
     if (prevSearch !== nextSearch) {
       this.loadPicture();
       this.resetData();
@@ -36,23 +32,6 @@ export default class App extends React.Component {
       this.loadPicture();
     }
   }
-
-  // loadPicture = () => {
-  //   const { pictureName, page } = this.state;
-  //   this.setState({ status: 'pending' });
-  //   api
-  //     .fetchPicture(pictureName, page)
-  //     .then(res => {
-  //       this.setState(prevState => ({
-  //         pictureData: [...prevState.pictureData, ...mapper(res.data.hits)],
-  //         status: 'resolved',
-  //       }));
-  //       if (res.data.hits.length === 0 ) {
-  //         toast.error('There is no picture for that name');
-  //       }
-  //     })
-  //     .catch(error => console.log(error));
-  // };
 
   loadPicture = () => {
     const { pictureName, page } = this.state;
@@ -77,18 +56,17 @@ export default class App extends React.Component {
   };
 
   handleFormSubmit = pictureName => {
-    // перезапись на новые 12 картинок при вводе новой строки валидной 
-    this.resetPage(); 
+    // перезапись на новые 12 картинок при вводе новой строки валидной
+    this.resetPage();
     this.setState({ pictureName });
   };
 
-  // функция загрузки новых 12 картинок 
+  // функция загрузки новых 12 картинок
   loadMore = () => {
     this.setState(prevState => ({
       page: prevState.page + 1,
     }));
-  }
-  
+  };
 
   pictureModalClick = picture => {
     this.setState({
@@ -96,21 +74,21 @@ export default class App extends React.Component {
     });
   };
 
-  // 1-МОДАЛКА)метод для закрытия модалки-пик 
+  // 1-МОДАЛКА)метод для закрытия модалки-пик
   closeModal = () => {
     this.setState({
       pictureModal: '',
     });
   };
 
-  // скидываем страницу на 1 при новой валидной строки   
+  // скидываем страницу на 1 при новой валидной строки
   resetPage() {
     this.setState({
       page: 1,
     });
   }
 
-   // скидываем инпут поиска на 0
+  // скидываем инпут поиска на 0
   resetData() {
     this.setState({
       pictureData: '',
@@ -122,7 +100,7 @@ export default class App extends React.Component {
     const { status, pictureData, pictureModal, IsLoadingMore } = this.state;
     return (
       <div>
-        <Searchbar onSubmit={this.handleFormSubmit} />        
+        <Searchbar onSubmit={this.handleFormSubmit} />
         {pictureData.length > 0 && (
           <ImageGallery
             pictureData={pictureData}
