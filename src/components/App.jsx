@@ -15,6 +15,7 @@ export default class App extends React.Component {
     pictureModal: '',
     status: 'idle',
     page: 1,
+    loadMore: false,
   };
 
   componentDidUpdate(prevState, prevProps) {
@@ -22,6 +23,10 @@ export default class App extends React.Component {
     const nextSearch = this.state.pictureName;
     const prevPage = prevProps.page;
     const nextPage = this.state.page;
+
+// if (prevPage === nextPage && prevSearch === nextSearch) {
+//       return;
+//     }
 
     if (prevSearch !== nextSearch) {
       this.loadPicture();
@@ -42,7 +47,7 @@ export default class App extends React.Component {
           pictureData: [...prevState.pictureData, ...mapper(res.data.hits)],
           status: 'resolved',
         }));
-        if (res.data.hits.length === 0) {
+        if (res.data.hits.length === 0 ) {
           toast.error('There is no picture for that name');
         }
       })
@@ -60,7 +65,8 @@ export default class App extends React.Component {
     this.setState(prevState => ({
       page: prevState.page + 1,
     }));
-  };
+  }
+  
 
   pictureModalClick = picture => {
     this.setState({
